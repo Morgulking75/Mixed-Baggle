@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Random } from './random';
+import { Die } from '../dice/die';
 
 @Injectable({
 	providedIn: 'root',
