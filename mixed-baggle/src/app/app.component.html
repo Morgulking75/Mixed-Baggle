@@ -1,0 +1,34 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+	<h1>
+		Welcome to Mixed Baggle!
+	</h1>
+</div>
+<div>
+	<h3>Here are the dice collections available:</h3>
+	<div *ngFor="let diceName of diceNames">
+		{{diceName}}
+	</div>
+</div>
+<h2>This is just a sample 6x6 board.
+</h2>
+<game-board></game-board>
+
+<h3>Items maybe to come:</h3>
+<ul>
+	<li>Customizable Dictionaries</li>
+	<li>Existing dictionaries</li>
+	<li>Custom board builder</li>
+	<li>Board roation</li>
+	<li>Timers</li>
+	<li>Word Checker</li>
+	<li>AI</li>
+	<li>group play</li>
+	<li>board seeding</li>
+	<li>board imaging</li>
+	<li>save & load games</li>
+	<li>progress tracker</li>
+	<li>skill building challenges</li>
+</ul>
+
+<router-outlet></router-outlet>
