@@ -1,1 +1,7 @@
-<div>Game Board here</div>
+<div>
+	<div *ngFor="let row of letters">
+		<div *ngFor="let column of row">
+			<die [letter]="column"></die>
+		</div>
+	</div>
+</div>>
