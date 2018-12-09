@@ -29,6 +29,12 @@
 <h2>This is just a sample 6x6 board.
 </h2>
 <game-board [dice]="shakenDice"></game-board>
+<input type="text" [(ngModel)]="enteredText" (ngModelChange)="showOnBoard()" (keyup.enter)="onKey($event)">
+<div>
+	<div *ngFor="let word of guessedWords">
+		{{word}}
+	</div>
+</div>
 
 <h3>Items maybe to come:</h3>
 <ul>

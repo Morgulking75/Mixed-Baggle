@@ -13,13 +13,17 @@ export class ShakerService {
 		this.random = new Random(seed);
 	}
 
-	chooseDie(dice: Array<Die>) {
+	chooseDie(dice: Array<Die>): Die {
 		let index = this.random.nextInt32([0, dice.length]);
 
-		return dice[index];
+		let chosen = dice[index];
+
+		dice.splice(index, 1);
+
+		return chosen;
 	}
 
-	chooseSide(die: Die) {
+	chooseSide(die: Die): string {
 		let index = this.random.nextInt32([0, die.sides.length]);
 
 		return die.sides[index];

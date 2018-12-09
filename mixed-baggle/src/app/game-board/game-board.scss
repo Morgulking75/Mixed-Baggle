@@ -5,3 +5,10 @@
 .col{
 	display: flex;
 }
+
+.board{
+	border: 1px gray solid;
+	border-radius: 5px;
+    display: table;
+    background: #c5c4ba;
+}

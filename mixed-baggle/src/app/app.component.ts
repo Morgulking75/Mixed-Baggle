@@ -3,6 +3,7 @@ import { DiceService } from './dice/dice.service';
 import { DiceCollection } from './dice/diceCollection';
 import { ShakerService } from './shaker/shaker.service';
 import { Die } from './die/die';
+import { TraverseService } from './game-board/traverse.service';
 
 @Component({
 	selector: 'app-root',
@@ -12,7 +13,7 @@ import { Die } from './die/die';
 export class AppComponent {
 	title = 'mixed-baggle';
 
-	constructor(private diceService: DiceService, private shakerService: ShakerService) { }
+	constructor(private diceService: DiceService, private shakerService: ShakerService, private traverseService: TraverseService) { }
 
 	public collections: Array<DiceCollection>;
 	public selectedDiceCollection: DiceCollection;
@@ -21,9 +22,12 @@ export class AppComponent {
 	public maxSeed: number = 99999999;
 	public seed: number = Math.floor(Math.random() * this.maxSeed);
 	public shakenDice: Array<Array<Die>> = [];
+	public enteredText: string;
+	public guessedWords: Array<string>;
 
 	ngOnInit() {
 		this.collections = this.diceService.getAllCollections();
+		this.guessedWords = [];
 
 		if (this.collections.length > 0) {
 			this.selectedDiceCollection = this.collections[0];
@@ -38,7 +42,7 @@ export class AppComponent {
 		}
 
 		this.shakenDice = [];
-		let availableLetters = this.selectedDiceCollection.dice;
+		let availableLetters = this.selectedDiceCollection.dice.slice();
 		this.shakerService = new ShakerService(this.seed);
 
 		for (let x = 0; x < this.height; x++) {
@@ -59,6 +63,24 @@ export class AppComponent {
 			}
 
 			this.shakenDice.push(col);
+		}
+	}
+
+	public showOnBoard = () => {
+		let word = [this.enteredText];
+
+		let traverse = new TraverseService(word, this.shakenDice);
+
+		traverse.highlightWord();
+	}
+
+	public onKey = ($event) => {
+		if (this.guessedWords.filter(word => word.toUpperCase() === this.enteredText.toUpperCase()).length === 0) {
+			this.guessedWords.push(this.enteredText);
+
+			this.guessedWords.sort();
+
+			this.enteredText = "";
 		}
 	}
 }
