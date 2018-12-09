@@ -1,22 +1,18 @@
 import { Injectable } from '@angular/core';
-import * as data from './dice.json';
 import { DiceCollection } from './diceCollection';
+import * as data from './dice.json';
 
 @Injectable({
 	providedIn: 'root',
 })
 
 export class DiceService {
-	constructor() { }
-
 	collections = Array<DiceCollection>();
 
-	parseDice() {
+	constructor() {
 		this.collections = [];
 
-		(<any>data["dice-collection"]).forEach(element => {
-			this.collections.push(new DiceCollection(element.name, element.dice));
-		});
+		data["dice-collection"].forEach(x => this.collections.push(new DiceCollection(x.name, x.dice, x.height, x.width)))
 	}
 
 	getAllCollections(): Array<DiceCollection> {

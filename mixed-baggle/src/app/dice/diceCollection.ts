@@ -3,11 +3,14 @@ import { Die } from './die';
 export class DiceCollection {
 	name: string;
 	dice: Array<Die>;
-	constructor(name: string, dice: Array<Array<string>>) {
+	width: number;
+	height: number;
+	constructor(name: string, dice: Array<Array<string>>, height: number, width: number) {
 		this.name = name;
+		this.height = height;
+		this.width = width;
+		this.dice = [];
 
-		dice.forEach(function (die: Array<string>) {
-			this.dice.add(new Die(die));
-		});
+		dice.forEach(x => this.dice.push(new Die(x)));
 	}
 }
