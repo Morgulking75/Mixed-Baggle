@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Die } from '../die/die';
 
 @Component({
 	selector: 'game-board',
@@ -6,4 +7,5 @@ import { Component } from '@angular/core';
 	styleUrls: ['./game-board.scss']
 })
 export class GameBoardComponent {
+	@Input() dice: Array<Array<Die>>;
 }

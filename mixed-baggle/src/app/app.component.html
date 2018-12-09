@@ -19,16 +19,16 @@
 		<input type="number" [(ngModel)]="width" min=3 max=7>
 	</div>
 	<div>
-		<input type="button" value="Generate Board" (click)="generateBoard()">
+		<label>Seed</label>
+		<input type="number" [(ngModel)]="seed" min=0 [max]="maxSeed">
 	</div>
 	<div>
-		<label>Seed</label>
-		<input type="number" [(ngModel)]="seed" min=0 max=99999999>
+		<input type="button" value="Generate Board!" (click)="generateBoard()">
 	</div>
 </div>
 <h2>This is just a sample 6x6 board.
 </h2>
-<game-board></game-board>
+<game-board [dice]="shakenDice"></game-board>
 
 <h3>Items maybe to come:</h3>
 <ul>

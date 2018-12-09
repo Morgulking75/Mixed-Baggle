@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { Random } from './random';
-import { Die } from '../dice/die';
+import { Die } from '../die/die';
 
 @Injectable({
 	providedIn: 'root',
@@ -9,7 +9,7 @@ import { Die } from '../dice/die';
 export class ShakerService {
 	random: Random;
 
-	constructor(seed: number) {
+	constructor(@Optional() seed: number) {
 		this.random = new Random(seed);
 	}
 

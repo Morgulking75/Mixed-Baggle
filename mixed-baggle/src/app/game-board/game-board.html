@@ -1,7 +1,7 @@
 <div>
-	<div *ngFor="let row of letters">
-		<div *ngFor="let column of row">
-			<die [letter]="column"></die>
+	<div *ngFor="let row of dice" class="row">
+		<div *ngFor="let die of row" class="col">
+			<die [die]="die"></die>
 		</div>
 	</div>
 </div>>

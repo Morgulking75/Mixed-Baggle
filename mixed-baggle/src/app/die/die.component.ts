@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Die } from './die'
 
 @Component({
 	selector: 'die',
@@ -7,5 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 
 export class DieComponent {
-	@Input() letter: string;
+	@Input() die: Die;
 }

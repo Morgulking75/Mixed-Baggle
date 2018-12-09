@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DiceService } from './dice/dice.service';
 import { DiceCollection } from './dice/diceCollection';
 import { ShakerService } from './shaker/shaker.service';
+import { Die } from './die/die';
 
 @Component({
 	selector: 'app-root',
@@ -17,7 +18,9 @@ export class AppComponent {
 	public selectedDiceCollection: DiceCollection;
 	public height: number = 6;
 	public width: number = 6;
-	public seed: number;
+	public maxSeed: number = 99999999;
+	public seed: number = Math.floor(Math.random() * this.maxSeed);
+	public shakenDice: Array<Array<Die>> = [];
 
 	ngOnInit() {
 		this.collections = this.diceService.getAllCollections();
@@ -30,11 +33,17 @@ export class AppComponent {
 	}
 
 	public generateBoard = () => {
-		let letters = Array<Array<string>>();
+		if (this.height * this.width > this.selectedDiceCollection.dice.length) {
+			return;
+		}
+
+		this.shakenDice = [];
 		let availableLetters = this.selectedDiceCollection.dice;
 		this.shakerService = new ShakerService(this.seed);
 
 		for (let x = 0; x < this.height; x++) {
+			let col = new Array<Die>();
+
 			for (let y = 0; y < this.width; y++) {
 				if (availableLetters.length > 0) {
 					let chosenDie = this.shakerService.chooseDie(availableLetters);
@@ -43,11 +52,13 @@ export class AppComponent {
 						return value === chosenDie;
 					});
 
-					let chosenSide = this.shakerService.chooseSide(chosenDie);
+					chosenDie.showing = this.shakerService.chooseSide(chosenDie);
 
-					letters[x][y] = chosenSide;
+					col.push(chosenDie);
 				}
 			}
+
+			this.shakenDice.push(col);
 		}
 	}
 }
