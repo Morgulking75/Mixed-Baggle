@@ -13,6 +13,16 @@
 		</select>
 	</div>
 	<div>
+		<label>Dictionary Collection</label>
+		<select [(ngModel)]="selectedDictionaryCollection">
+			<option *ngFor="let collection of dictionaries" [ngValue]="collection">{{collection.name}}</option>
+		</select>
+	</div>
+	<div>
+		<label>Minimum Word Length</label>
+		<input type="number" [(ngModel)]="minlength" min=3 max=36>
+	</div>
+	<div>
 		<label>Board Size</label>
 		<input type="number" [(ngModel)]="height" min=3 max=7>
 		BY
@@ -26,8 +36,6 @@
 		<input type="button" value="Generate Board!" (click)="generateBoard()">
 	</div>
 </div>
-<h2>This is just a sample 6x6 board.
-</h2>
 <game-board [dice]="shakenDice"></game-board>
 <input type="text" [(ngModel)]="enteredText" (ngModelChange)="showOnBoard()" (keyup.enter)="onKey($event)">
 <div>
@@ -52,5 +60,12 @@
 	<li>progress tracker</li>
 	<li>skill building challenges</li>
 </ul>
+<label>Available Words</label>
+<div>
+	<div *ngFor="let word of wordList">
+		{{word}}
+	</div>
+</div>
+
 
 <router-outlet></router-outlet>
