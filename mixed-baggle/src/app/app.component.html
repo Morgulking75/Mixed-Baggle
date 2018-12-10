@@ -39,8 +39,8 @@
 <game-board [dice]="shakenDice"></game-board>
 <input type="text" [(ngModel)]="enteredText" (ngModelChange)="showOnBoard()" (keyup.enter)="onKey($event)">
 <div>
-	<div *ngFor="let word of guessedWords">
-		{{word}}
+	<div *ngFor="let guessedWord of guessedWords">
+		{{guessedWord}}
 	</div>
 </div>
 
@@ -60,10 +60,10 @@
 	<li>progress tracker</li>
 	<li>skill building challenges</li>
 </ul>
-<label>Available Words</label>
 <div>
-	<div *ngFor="let word of wordList">
-		{{word}}
+	<div>Found {{wordCount}} words in {{timeTaken}} milliseconds.</div>
+	<div *ngFor="let word of wordList | keyvalue">
+		{{word.key}} --> {{word.value}}
 	</div>
 </div>
 

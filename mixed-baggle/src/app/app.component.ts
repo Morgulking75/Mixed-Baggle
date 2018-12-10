@@ -6,6 +6,7 @@ import { Die } from './die/die';
 import { TraverseService } from './game-board/traverse.service';
 import { DictionaryService } from './dictionary/dictionary.service';
 import { Dictionary } from './dictionary/dictionary';
+import { HashEnum } from './game-board/hashenum';
 
 @Component({
 	selector: 'app-root',
@@ -28,8 +29,10 @@ export class AppComponent {
 	public shakenDice: Array<Array<Die>> = [];
 	public enteredText: string;
 	public guessedWords: Array<string>;
-	public wordList: Array<string>;
+	public wordList: Map<string, number>;
 	public minlength: number = 4;
+	public timeTaken: number = 0;
+	public wordCount: number = 0;
 
 	ngOnInit() {
 		let dictionaryService = new DictionaryService();
@@ -37,7 +40,7 @@ export class AppComponent {
 		this.collections = this.diceService.getAllCollections();
 		this.dictionaries = dictionaryService.getAllCollections();
 		this.guessedWords = [];
-		this.wordList = [];
+		this.wordList = new Map<string, number>();
 
 		if (this.collections.length > 0) {
 			this.selectedDiceCollection = this.collections[0];
@@ -90,20 +93,30 @@ export class AppComponent {
 			this.shakenDice.push(col);
 		}
 
+		let start = new Date();
+
 		let filteredWordList = this.selectedDictionaryCollection.trimWordsContainingLetters(letters);
 
 		filteredWordList = filteredWordList.filter(x => x.length >= this.minlength);
 
-		let traverse = new TraverseService(filteredWordList, this.shakenDice);
+		let hashTable = this.hashWordList(filteredWordList);
+
+		let traverse = new TraverseService(hashTable, this.shakenDice);
 
 		this.wordList = traverse.getWordList();
 
-		this.wordList.sort();
+		let end = new Date();
+
+		this.timeTaken = end.getTime() - start.getTime();
+		this.wordCount = Object.keys(this.wordList).length;
+
+		hashTable = new Map<string, number>();
 	}
 
 	public showOnBoard = () => {
-		let word = [this.enteredText];
+		let word = new Map<string, HashEnum>();
 
+		[this.enteredText]
 		let traverse = new TraverseService(word, this.shakenDice);
 
 		traverse.highlightWord();
@@ -111,7 +124,7 @@ export class AppComponent {
 
 	public onKey = ($event) => {
 		if (this.guessedWords.filter(word => word.toUpperCase() === this.enteredText.toUpperCase()).length === 0
-			&& this.wordList.filter(word => word.toUpperCase() === this.enteredText.toUpperCase()).length === 1) {
+			&& this.wordList[this.enteredText.toUpperCase()]) {
 			this.guessedWords.push(this.enteredText);
 
 			this.guessedWords.sort();
@@ -122,5 +135,51 @@ export class AppComponent {
 
 	private onlyUnique(value, index, self) {
 		return self.indexOf(value) === index;
+	}
+
+	private hashWordList(wordList: Array<string>): Map<string, HashEnum> {
+		let hashTable = new Map<string, HashEnum>();
+
+		wordList.forEach(element => {
+			element = element.toUpperCase();
+			let wordArray = element.split("");
+			let miniWord = "";
+
+			let result = hashTable[element] || HashEnum.DoesNotExist;
+
+			switch (result) {
+				case HashEnum.DoesNotExist:
+					hashTable[element] = HashEnum.FullWord;
+					break;
+				case HashEnum.PartialWord:
+					hashTable[element] = HashEnum.ContinuingWord;
+					break;
+				default:
+					break;
+			}
+
+			for (let x = 0; x < wordArray.length - 1; x++) {
+				miniWord += wordArray[x];
+
+				result = hashTable[miniWord] || HashEnum.DoesNotExist;
+
+				switch (result) {
+					case HashEnum.DoesNotExist:
+						hashTable[miniWord] = HashEnum.PartialWord;
+						break;
+					case HashEnum.FullWord:
+						hashTable[miniWord] = HashEnum.ContinuingWord
+						break;
+					default:
+						break;
+				}
+			}
+		});
+
+		return hashTable;
+	}
+
+	ascOrder = (a, b) => {
+		if (a.key > b.key) return a.key;
 	}
 }
