@@ -7,7 +7,6 @@ import { DieComponent } from './die/die.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import { AppComponent } from './app.component';
 
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -20,8 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 		BrowserModule,
 		FormsModule,
 		AppRoutingModule,
-		FontAwesomeModule,
-		AngularFontAwesomeModule
+		FontAwesomeModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

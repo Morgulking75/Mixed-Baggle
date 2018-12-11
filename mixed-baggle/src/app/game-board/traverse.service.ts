@@ -2,11 +2,6 @@ import { Injectable, Optional } from '@angular/core';
 import { Point } from './point';
 import { Die } from '../die/die';
 import { HashEnum } from './hashenum';
-import { stringify } from 'querystring';
-
-@Injectable({
-	providedIn: 'root',
-})
 
 export class TraverseService {
 	public foundWord: Map<string, number>;

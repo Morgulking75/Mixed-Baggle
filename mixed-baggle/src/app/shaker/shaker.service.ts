@@ -2,10 +2,6 @@ import { Injectable, Optional } from '@angular/core';
 import { Random } from './random';
 import { Die } from '../die/die';
 
-@Injectable({
-	providedIn: 'root',
-})
-
 export class ShakerService {
 	random: Random;
 
