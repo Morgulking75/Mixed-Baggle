@@ -114,10 +114,9 @@ export class AppComponent {
 	}
 
 	public showOnBoard = () => {
-		let word = new Map<string, HashEnum>();
+		let word = [this.enteredText];
 
-		[this.enteredText]
-		let traverse = new TraverseService(word, this.shakenDice);
+		let traverse = new TraverseService(this.hashWordList(word), this.shakenDice);
 
 		traverse.highlightWord();
 	}

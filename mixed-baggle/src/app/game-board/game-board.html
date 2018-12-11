@@ -5,3 +5,14 @@
 		</div>
 	</div>
 </div>
+<div class="rotate-buttons" *ngIf="boardLoaded">
+	<button class="clockwise btn" (click)="rotateCc()" title="Rotate Clockwise">
+		<fa-icon [icon]="faUndo" transform="flip-h"></fa-icon>
+	</button>
+	<button class="clockwise btn" (click)="flip()" title="Flip">
+		<fa-icon [icon]="faExchangeAlt"></fa-icon>
+	</button>
+	<button class="anti-clockwise" (click)="rotateCcw()" title="Rotate Counterclockwise">
+		<fa-icon [icon]="faUndo" class="fa-flip-horizontal"></fa-icon>
+	</button>
+</div>
