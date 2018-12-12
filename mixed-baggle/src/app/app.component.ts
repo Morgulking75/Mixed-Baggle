@@ -28,19 +28,28 @@ export class AppComponent {
 	public seed: number = Math.floor(Math.random() * this.maxSeed);
 	public shakenDice: Array<Array<Die>> = [];
 	public enteredText: string;
-	public guessedWords: Array<string>;
+	public guessedWords: Map<string, number>;
 	public wordList: Map<string, number>;
 	public minlength: number = 4;
 	public timeTaken: number = 0;
 	public wordCount: number = 0;
+	private scoring: Map<number, number>;
+	public totalPoints: number = 0;
 
 	ngOnInit() {
 		let dictionaryService = new DictionaryService();
 
 		this.collections = this.diceService.getAllCollections();
 		this.dictionaries = dictionaryService.getAllCollections();
-		this.guessedWords = [];
+		this.guessedWords = new Map<string, number>();
 		this.wordList = new Map<string, number>();
+		this.scoring = new Map<number, number>();
+		this.scoring[3] = 1;
+		this.scoring[4] = 1;
+		this.scoring[5] = 2;
+		this.scoring[6] = 3;
+		this.scoring[7] = 5;
+		this.scoring[8] = 11;
 
 		if (this.collections.length > 0) {
 			this.selectedDiceCollection = this.collections[0];
@@ -122,18 +131,18 @@ export class AppComponent {
 	}
 
 	public onKey = ($event) => {
-		if (this.guessedWords.filter(word => word.toUpperCase() === this.enteredText.toUpperCase()).length === 0
+		if (!this.guessedWords[this.enteredText.toUpperCase()]
 			&& this.wordList[this.enteredText.toUpperCase()]) {
-			this.guessedWords.push(this.enteredText);
+			let wordLength = this.enteredText.length > 8 ? 8 : this.enteredText.length;
+			let points = this.scoring[wordLength];
 
-			this.guessedWords.sort();
-
+			this.guessedWords[this.enteredText.toUpperCase()] = points;
+			this.totalPoints += points;
 			this.enteredText = "";
 		}
-	}
-
-	private onlyUnique(value, index, self) {
-		return self.indexOf(value) === index;
+		else {
+			$event.target.select();
+		}
 	}
 
 	private hashWordList(wordList: Array<string>): Map<string, HashEnum> {
