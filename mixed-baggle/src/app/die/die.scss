@@ -1,8 +1,8 @@
 .letter{
 	font-family: Arial, Helvetica, sans-serif;
 	text-transform: capitalize;
-    width: 23px;
-    height: 20px;
+    width: 27px;
+    height: 24px;
     font-weight: 700;
     border: gray 1px solid;
     border-radius: 6px;
@@ -10,6 +10,7 @@
     padding-top: 3px;
 	margin: 1px;
 	background: #fffeef;
+	box-sizing: content-box;
 }
 
 .selected {

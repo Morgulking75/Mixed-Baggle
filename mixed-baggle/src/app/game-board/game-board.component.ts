@@ -15,6 +15,7 @@ export class GameBoardComponent {
 	boardLoaded = false;
 	faUndo = faUndo;
 	faExchangeAlt = faExchangeAlt;
+	public zoomTick: number = 1;
 
 	ngOnChanges(changes: SimpleChanges) {
 		this.boardLoaded = this.dice.length > 0;

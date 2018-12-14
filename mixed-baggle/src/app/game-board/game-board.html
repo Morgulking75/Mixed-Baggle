@@ -1,6 +1,10 @@
-<div class="board">
-	<div *ngFor="let row of dice" class="row">
-		<div *ngFor="let die of row" class="col">
+<div class=zoomer>
+	<label>Board Zoom</label>
+	<input type="range" step="0.05" min="1" max="10" [(ngModel)]="zoomTick" class="slider" id="myRange">
+</div>
+<div class="board" [style.zoom]="zoomTick">
+	<div *ngFor="let row of dice" class="board-row">
+		<div *ngFor="let die of row" class="board-col">
 			<die [die]="die"></die>
 		</div>
 	</div>
@@ -12,7 +16,7 @@
 	<button class="clockwise btn" (click)="flip()" title="Flip">
 		<fa-icon [icon]="faExchangeAlt"></fa-icon>
 	</button>
-	<button class="anti-clockwise" (click)="rotateCcw()" title="Rotate Counterclockwise">
+	<button class="anti-clockwise btn" (click)="rotateCcw()" title="Rotate Counterclockwise">
 		<fa-icon [icon]="faUndo" class="fa-flip-horizontal"></fa-icon>
 	</button>
 </div>
