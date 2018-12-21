@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { DieComponent } from './die/die.component';
 import { GameBoardComponent } from './game-board/game-board.component';
+import { SettingsComponent } from './settings/settings.component';
 import { AppComponent } from './app.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -13,6 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 	declarations: [
 		AppComponent,
 		GameBoardComponent,
+		SettingsComponent,
 		DieComponent
 	],
 	imports: [

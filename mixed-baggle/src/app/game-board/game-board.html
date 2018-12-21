@@ -1,4 +1,4 @@
-<div class=zoomer>
+<div class="zoomer" *ngIf="boardLoaded">
 	<label>Board Zoom</label>
 	<input type="range" step="0.05" min="1" max="10" [(ngModel)]="zoomTick" class="slider" id="myRange">
 </div>

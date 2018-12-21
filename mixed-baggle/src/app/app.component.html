@@ -6,64 +6,36 @@
 </div>
 <div>
 	<h3>Customize your board!</h3>
-	<div>
-		<label>Dice Collection</label>
-		<select [(ngModel)]="selectedDiceCollection">
-			<option *ngFor="let collection of collections" [ngValue]="collection">{{collection.name}}</option>
-		</select>
-	</div>
-	<div>
-		<label>Dictionary Collection</label>
-		<select [(ngModel)]="selectedDictionaryCollection">
-			<option *ngFor="let collection of dictionaries" [ngValue]="collection">{{collection.name}}</option>
-		</select>
-	</div>
-	<div>
-		<label>Minimum Word Length</label>
-		<input type="number" [(ngModel)]="minlength" min=3 max=36>
-	</div>
-	<div>
-		<label>Board Size</label>
-		<input type="number" [(ngModel)]="height" min=3 max=9>
-		BY
-		<input type="number" [(ngModel)]="width" min=3 max=9>
-	</div>
-	<div>
-		<label>Seed</label>
-		<input type="number" [(ngModel)]="seed" min=0 [max]="maxSeed">
-	</div>
+	<settings [settings]="settings"></settings>
 	<div>
 		<input type="button" value="Generate Board!" (click)="generateBoard()">
 	</div>
 </div>
-<game-board [dice]="shakenDice"></game-board>
-<input type="text" [(ngModel)]="enteredText" (ngModelChange)="showOnBoard()" (keyup.enter)="onKey($event)">
 <div>
-	<div>Points: {{totalPoints}}</div>
-	<div *ngFor="let guessedWord of guessedWords.entries(); let i = index" class="col-sm-1">
-		{{ guessedWord | json }} {{ i | json }}
-		<br>
-		{{ guessedWord[0] | json }} {{ guessedWord[1] | json }}
-		{{guessedWord.key}}
+	<div class="col-sm-5">
+		<game-board [dice]="shakenDice"></game-board>
+	</div>
+	<div class="col-sm-5">
+		<input type="text" [(ngModel)]="enteredText" (ngModelChange)="showOnBoard()" (keyup.enter)="onKey($event)">
+		<div>
+			<div>Points: {{totalPoints}}</div>
+			<div *ngFor="let guessedWord of toArray(guessedWords)">
+				{{ guessedWord.key }} - {{ guessedWord.value }}
+			</div>
+		</div>
 	</div>
 </div>
 
-<h3>Items maybe to come:</h3>
-<ul>
-	<li>Customizable Dictionaries</li>
-	<li>Custom board builder</li>
-	<li>Timers</li>
-	<li>AI</li>
-	<li>group play</li>
-	<li>board imaging</li>
-	<li>save & load games</li>
-	<li>progress tracker</li>
-	<li>skill building challenges</li>
-</ul>
 <div>
 	<div>Found {{wordCount}} words in {{timeTaken}} milliseconds.</div>
-	<div *ngFor="let word of wordList | keyvalue">
-		{{word.key | json}} --> {{word.value}}
+	<div>
+		<fa-icon [icon]="faAngleDown" *ngIf="showFoundWords" (click)="showFoundWords = !showFoundWords"></fa-icon>
+		<fa-icon [icon]="faAngleUp" *ngIf="!showFoundWords" (click)="showFoundWords = !showFoundWords"></fa-icon>
+	</div>
+	<div *ngIf="showFoundWords">
+		<div *ngFor="let word of toArray(wordList)">
+			{{word.key | json}} --> {{word.value}}
+		</div>
 	</div>
 </div>
 
