@@ -1,4 +1,4 @@
-import { Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Point } from './point';
 import { Die } from '../die/die';
 import { HashEnum } from './hashenum';

@@ -23,14 +23,13 @@ export class SettingsComponent {
 	faAngleDown = faAngleDown;
 	faAngleUp = faAngleUp;
 
+	constructor(private dictionaryService: DictionaryService, private diceService: DiceService) { }
+
 	ngOnInit() {
 		this.settings.seed = Math.floor(Math.random() * this.maxSeed);
 
-		let dictionaryService = new DictionaryService();
-		let diceService = new DiceService();
-
-		this.dices = diceService.getAllCollections();
-		this.dictionaries = dictionaryService.getAllCollections();
+		this.dices = this.diceService.getAllCollections();
+		this.dictionaries = this.dictionaryService.getAllCollections();
 
 		if (this.dices.length > 0) {
 			this.settings.dice = this.dices[0];

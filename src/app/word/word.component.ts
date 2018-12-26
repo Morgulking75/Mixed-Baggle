@@ -3,8 +3,8 @@ import { Word } from './word';
 
 @Component({
 	selector: 'word',
-	templateUrl: './word.html',
-	styleUrls: ['./word.scss']
+	templateUrl: './word.component.html',
+	styleUrls: ['./word.component.scss']
 })
 
 export class WordComponent {

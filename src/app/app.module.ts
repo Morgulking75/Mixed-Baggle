@@ -9,6 +9,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { AppComponent } from './app.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DiceService } from './dice/dice.service';
+import { DictionaryService } from './dictionary/dictionary.service';
 
 @NgModule({
 	declarations: [
@@ -23,7 +25,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 		AppRoutingModule,
 		FontAwesomeModule
 	],
-	providers: [],
+	providers: [
+		DiceService,
+		DictionaryService
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }
