@@ -1,7 +1,9 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { DieComponent } from './die/die.component';
 import { GameBoardComponent } from './game-board/game-board.component';
@@ -20,10 +22,12 @@ import { DictionaryService } from './dictionary/dictionary.service';
 		DieComponent
 	],
 	imports: [
-		BrowserModule,
-		FormsModule,
 		AppRoutingModule,
-		FontAwesomeModule
+		BrowserAnimationsModule,
+		BrowserModule,
+		FontAwesomeModule,
+		FormsModule,
+		MaterialModule
 	],
 	providers: [
 		DiceService,
