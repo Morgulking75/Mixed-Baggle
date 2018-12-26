@@ -8,16 +8,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { DieComponent } from './die/die.component';
 import { GameBoardComponent } from './game-board/game-board.component';
 import { SettingsComponent } from './settings/settings.component';
+import { HomeComponent } from './home/home.component';
 import { AppComponent } from './app.component';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DiceService } from './dice/dice.service';
 import { DictionaryService } from './dictionary/dictionary.service';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		GameBoardComponent,
+		HeaderComponent,
+		HomeComponent,
 		SettingsComponent,
 		DieComponent
 	],
