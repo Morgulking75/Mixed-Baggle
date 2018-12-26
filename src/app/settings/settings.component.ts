@@ -9,10 +9,9 @@ import { DiceService } from '../dice/dice.service';
 
 @Component({
 	selector: 'settings',
-	templateUrl: './settings.html',
-	styleUrls: ['./settings.scss']
+	templateUrl: './settings.component.html',
+	styleUrls: ['./settings.component.scss']
 })
-
 export class SettingsComponent {
 	@Input() settings: Settings;
 

@@ -5,21 +5,19 @@ import * as data from './dice.json';
 @Injectable({
 	providedIn: 'root',
 })
-
 export class DiceService {
-	collections = Array<DiceCollection>();
+	private collections: DiceCollection[];
 
 	constructor() {
 		this.collections = [];
-
 		data["dice-collection"].forEach(x => this.collections.push(new DiceCollection(x.name, x.dice, x.height, x.width)))
 	}
 
-	getAllCollections(): Array<DiceCollection> {
+	getAllCollections(): DiceCollection[] {
 		return this.collections;
 	}
 
-	getAllDiceNames(): Array<string> {
+	getAllDiceNames(): string[] {
 		return this.collections.map(c => c.name);
 	}
 

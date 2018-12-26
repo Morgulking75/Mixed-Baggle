@@ -5,15 +5,15 @@ import { Dictionary } from './dictionary';
 @Injectable({
 	providedIn: 'root',
 })
-
 export class DictionaryService {
-	collections = Array<Dictionary>();
+	private collections: Dictionary[];
 
 	constructor() {
+		this.collections = [];
 		data["dictionary-collection"].forEach(x => this.collections.push(new Dictionary(x.name, x.words)))
 	}
 
-	getAllCollections(): Array<Dictionary> {
+	getAllCollections(): Dictionary[] {
 		return this.collections;
 	}
 }

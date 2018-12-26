@@ -3,8 +3,8 @@ import { Die } from './die'
 
 @Component({
 	selector: 'die',
-	templateUrl: './die.html',
-	styleUrls: ['./die.scss']
+	templateUrl: './die.component.html',
+	styleUrls: ['./die.component.scss']
 })
 
 export class DieComponent {
