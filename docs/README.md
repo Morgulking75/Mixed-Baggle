@@ -30,7 +30,8 @@ Future features:
 12. Better CSS
 13. Training setup
 14. Predictive word choices
-
+15. Word Heatmaps
+16. Statistically proven tips
 
 ## Development server
 
