@@ -15,7 +15,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DiceService } from './dice/dice.service';
 import { DictionaryService } from './dictionary/dictionary.service';
 import { HeaderComponent } from './header/header.component';
-import { HeatMap } from './heatMap/heatMap';
 
 @NgModule({
 	declarations: [
@@ -24,8 +23,7 @@ import { HeatMap } from './heatMap/heatMap';
 		HeaderComponent,
 		HomeComponent,
 		SettingsComponent,
-		DieComponent,
-		HeatMap
+		DieComponent
 	],
 	imports: [
 		AppRoutingModule,

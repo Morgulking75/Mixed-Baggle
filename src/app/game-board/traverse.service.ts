@@ -41,6 +41,17 @@ export class TraverseService {
 		return this.foundWord;
 	}
 
+	private updateHeatMap(path: Array<Point>) {
+		let endIndex = path.length - 1;
+
+		this.board[path[0].x][path[0].y].heatMap.addStart();
+		this.board[path[endIndex].x][path[endIndex].y].heatMap.addEnd();
+
+		for (let x = 1; x < endIndex; x++) {
+			this.board[path[x].x][path[x].y].heatMap.addMiddle();
+		}
+	}
+
 	private findNext(path: Array<Point>, assembledWord: string, x: number, y: number, highlightWord: boolean) {
 		assembledWord += this.board[x][y].showing.toUpperCase();
 		let hashValue = this.hash[assembledWord] || HashEnum.DoesNotExist;
@@ -58,6 +69,8 @@ export class TraverseService {
 				}
 
 				this.foundWord[assembledWord] = (this.foundWord[assembledWord] || 0) + 1;
+
+				this.updateHeatMap(path);
 				break;
 			case HashEnum.ContinuingWord:
 				if (highlightWord) {
@@ -66,6 +79,7 @@ export class TraverseService {
 
 				this.foundWord[assembledWord] = (this.foundWord[assembledWord] || 0) + 1;
 				searchAround = true;
+				this.updateHeatMap(path);
 				break;
 			default:
 				break;

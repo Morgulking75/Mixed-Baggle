@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Die } from '../die/die';
 import { faUndo } from '@fortawesome/free-solid-svg-icons';
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
+import { HeatMapEnum } from '../heatMap/heatMapEnum';
 
 @Component({
 	selector: 'game-board',
@@ -12,10 +13,14 @@ export class GameBoardComponent {
 	@Input() dice: Array<Array<Die>>;
 	@Input() word: string;
 
+	HeatMapEnum = HeatMapEnum;
+
 	boardLoaded: boolean = false;
 	faUndo = faUndo;
 	faExchangeAlt = faExchangeAlt;
 	zoomTick: number = 1;
+	heatMap: HeatMapEnum = HeatMapEnum.None;
+
 
 	ngOnChanges() {
 		this.boardLoaded = this.dice.length > 0;

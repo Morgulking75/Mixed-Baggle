@@ -29,4 +29,8 @@ export class HeatMap {
 	public addEnd() {
 		this.end++;
 	}
+
+	public toString() {
+		return "start: " + this.start + ", middle: " + this.middle + ", end: " + this.end;
+	}
 }

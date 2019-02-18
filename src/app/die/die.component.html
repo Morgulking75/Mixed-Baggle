@@ -1,1 +1,1 @@
-<div class=letter [ngClass]="{'selected': die.selected}">{{die.showing}}</div>
+<div class=letter [ngClass]="{'selected': die.selected && !showHeatMap}" [style.background]="colorDie(heatMap)" [title]="helpString">{{die.showing}}</div>
