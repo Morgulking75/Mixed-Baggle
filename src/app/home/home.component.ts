@@ -65,7 +65,7 @@ export class HomeComponent {
 					});
 
 					chosenDie.showing = shakerService.chooseSide(chosenDie);
-
+					chosenDie.heatMap.clearAll();
 					let split = chosenDie.showing.split("");
 
 					split.forEach(character => {

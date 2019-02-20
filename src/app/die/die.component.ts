@@ -12,8 +12,9 @@ export class DieComponent {
 	@Input() die: Die;
 	@Input() heatMap: HeatMapEnum;
 
-	public showHeatMap: boolean;
-	public helpString: string;
+	public HeatMapEnum = HeatMapEnum;
+	public showHeatMap: boolean = false;
+	public helpString: string = "";
 
 	/**
 	 * colorDie
