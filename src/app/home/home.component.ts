@@ -21,7 +21,6 @@ export class HomeComponent {
 	public enteredText: string;
 	public guessedWords: Map<string, number>;
 	public wordList: Map<string, number>;
-	public minlength: number = 4;
 	public timeTaken: number = 0;
 	public wordCount: number = 0;
 	private scoring: Map<number, number>;
@@ -87,7 +86,7 @@ export class HomeComponent {
 
 		let filteredWordList = this.settings.dictionary.trimWordsContainingLetters(letters);
 
-		filteredWordList = filteredWordList.filter(x => x.length >= this.minlength);
+		filteredWordList = filteredWordList.filter(x => x.length >= this.settings.minlength);
 
 		let hashTable = this.hashWordList(filteredWordList);
 
