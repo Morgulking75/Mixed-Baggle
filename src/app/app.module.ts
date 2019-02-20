@@ -18,27 +18,27 @@ import { HeaderComponent } from './header/header.component';
 import { WordComponent } from './word/word.component';
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		GameBoardComponent,
-		HeaderComponent,
-		HomeComponent,
-		SettingsComponent,
-		DieComponent,
-		WordComponent
-	],
-	imports: [
-		AppRoutingModule,
-		BrowserAnimationsModule,
-		BrowserModule,
-		FontAwesomeModule,
-		FormsModule,
-		MaterialModule
-	],
-	providers: [
-		DiceService,
-		DictionaryService
-	],
-	bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        GameBoardComponent,
+        HeaderComponent,
+        HomeComponent,
+        SettingsComponent,
+        DieComponent,
+        WordComponent
+    ],
+    imports: [
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        FontAwesomeModule,
+        FormsModule,
+        MaterialModule
+    ],
+    providers: [
+        DiceService,
+        DictionaryService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
