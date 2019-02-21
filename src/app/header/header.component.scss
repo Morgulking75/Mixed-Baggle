@@ -1,0 +1,28 @@
+nav {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+nav > ul {
+    text-align: center;
+    font-size: 1em;
+    padding: 0;
+    transition: .2s font-size ease-in;
+    height: 100%;
+}
+
+nav > ul > li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+a {
+    padding: 1em 0.75em;
+}
+
+li > a {
+    color: white;
+    padding: 1em 0.75em;
+    text-decoration: none;
+}

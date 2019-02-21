@@ -1,8 +1,8 @@
 <div>
 	<div>
-		<label>Settings</label>
-		<fa-icon [icon]="faAngleDown" *ngIf="showSettings" (click)="showSettings = !showSettings"></fa-icon>
-		<fa-icon [icon]="faAngleUp" *ngIf="!showSettings" (click)="showSettings = !showSettings"></fa-icon>
+		<label>{{settings.height}}x{{settings.width}} [{{settings.dice.name}}] - [{{settings.dictionary.name}}]</label>&nbsp;&nbsp;
+		<a *ngIf="showSettings" (click)="showSettings = !showSettings" href="javascript:void(0);">[hide]</a>
+		<a *ngIf="!showSettings" (click)="showSettings = !showSettings" href="javascript:void(0);">[edit]</a>
 	</div>
 	<div *ngIf="showSettings">
 		<div>
